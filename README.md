@@ -14,13 +14,13 @@ View code used in this example from [here](https://github.com/gobeam/mongo-go-pa
 ## Install
 
 ``` bash
-$ go get -u -v github.com/gobeam/mongo-go-pagination
+$ go get -u -v github.com/tggo/mongo-go-pagination
 ```
 
 or with dep
 
 ``` bash
-$ dep ensure -add github.com/gobeam/mongo-go-pagination
+$ dep ensure -add github.com/tggo/mongo-go-pagination
 ```
 
 
