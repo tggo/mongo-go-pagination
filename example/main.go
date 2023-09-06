@@ -4,14 +4,16 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	paginate "github.com/gobeam/mongo-go-pagination"
+	"log"
+	"net/http"
+	"strconv"
+
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
-	"log"
-	"net/http"
-	"strconv"
+
+	paginate "github.com/tggo/mongo-go-pagination"
 )
 
 // Product struct
@@ -97,13 +99,13 @@ func main() {
 		convertedPageInt, convertedLimitInt := getPageAndLimit(r)
 		collection := dbConnection.Collection("products")
 
-		//Example for Aggregation
+		// Example for Aggregation
 		limit := int64(convertedLimitInt)
 		page := int64(convertedPageInt)
-		//match query
+		// match query
 		match := bson.M{"$match": bson.M{"quantity": bson.M{"$gt": 0}}}
 		//
-		//group query
+		// group query
 		projectQuery := bson.M{"$project": bson.M{"_id": 1, "name": 1, "quantity": 1}}
 
 		// you can easily chain function and pass multiple query like here we are passing match
