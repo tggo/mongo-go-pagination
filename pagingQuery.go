@@ -219,9 +219,11 @@ LOOP:
 	var data []bson.Raw
 	var aggCount int64
 
-	if len(docs) > 0 && len(docs[0].Data) > 0 {
-		aggCount = docs[0].Total[0].Count
+	if len(docs) > 0 {
 		data = docs[0].Data
+		if len(docs[0].Total) > 0 {
+			aggCount = docs[0].Total[0].Count
+		}
 	}
 	paginationInfoChan := make(chan *Paginator, 1)
 	Paging(paging, paginationInfoChan, true, aggCount)
